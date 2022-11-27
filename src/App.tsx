@@ -1,58 +1,85 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useState } from 'react';
 import './App.css';
+import { Button } from './components/button';
+import { Input } from './components/input';
+import { TodoItem } from './features/Todos/TodoItem';
+import { TodoList } from './features/Todos/TodoList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+export interface ToDo {
+	id: number;
+	value: string;
+	done: boolean;
 }
 
+const App = () => {
+	const [newItem, setNewItem] = useState('');
+	const [todos, setTodos] = useState<ToDo[]>([]);
+
+	const addItem = () => {
+		if (!newItem) {
+			return;
+		}
+
+		const todo: ToDo = {
+			id: Math.floor(Math.random() * 100),
+			value: newItem,
+			done: false,
+		};
+
+		setTodos((oldTodos) => [...oldTodos, todo]);
+		setNewItem('');
+	};
+
+	const todoDone = (done: boolean): void => {
+		const edited = todos.map((cur: ToDo) =>
+			done === cur.done ? { ...cur, done: !cur.done } : cur
+		);
+		setTodos(edited);
+	};
+
+	const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setNewItem(e.target.value);
+	};
+
+	const deleteTask = (id: number): void => {
+		setTodos((oldTodos) =>
+			oldTodos.filter((todo: ToDo) =>
+				todo.id > -1 ? oldTodos.slice(todo.id, 1) : null
+			)
+		);
+	};
+
+	return (
+		<div className="App">
+			<h1>ToDo List</h1>
+			<Input
+				type="text"
+				placeholder="add new to-do"
+				value={newItem}
+				onChange={changeInputHandler}
+			/>
+			<Button clickHandler={addItem}>Add</Button>
+			<TodoList
+				deleteTask={deleteTask}
+				todoDone={todoDone}
+				todos={todos}
+				id={Math.floor(Math.random() * 100)}
+				value={newItem}
+				done={false}>
+				<TodoItem
+					deleteHandler={deleteTask}
+					todoDone={todoDone}
+					id={Math.floor(Math.random() * 100)}
+					value={newItem}
+					done={false}
+				/>
+			</TodoList>
+		</div>
+	);
+};
+
 export default App;
+
+//components/input.tsx
+
+//TodoList.tsx
