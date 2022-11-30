@@ -30,6 +30,10 @@ const App = () => {
 		setNewItem('');
 	};
 
+	const todoClearAll = (): void => {
+		setTodos([]);
+	};
+
 	const todoDone = (done: boolean): void => {
 		const edited = todos.map((cur: ToDo) =>
 			done === cur.done ? { ...cur, done: !cur.done } : cur
@@ -41,32 +45,40 @@ const App = () => {
 		setNewItem(e.target.value);
 	};
 
-	const deleteTask = (id: number): void => {
+	const deleteTask = (): void => {
 		setTodos((oldTodos) =>
-			oldTodos.filter((todo: ToDo) =>
-				todo.id > -1 ? oldTodos.slice(todo.id, 1) : null
-			)
+			oldTodos.filter((todo: ToDo) => oldTodos.splice(todo.id, 1))
 		);
 	};
 
 	return (
 		<div className="App">
-			<h1>ToDo List</h1>
+			<h1 className="h1-todo">To-Do List</h1>
 			<Input
+				className={'input'}
 				type="text"
-				placeholder="add new to-do"
+				placeholder="add new to-do..."
 				value={newItem}
 				onChange={changeInputHandler}
 			/>
-			<Button clickHandler={addItem}>Add</Button>
+			<>
+				<Button
+					className={'button-todo'}
+					clickHandler={addItem}>
+					Add
+				</Button>
+				<Button
+					className={'button-clear-all'}
+					clickHandler={todoClearAll}
+					children={'Clear all'}></Button>
+			</>
 			<TodoList
-				deleteTask={deleteTask}
+				className={'todo-list-button'}
 				todoDone={todoDone}
-				todos={todos}
-				id={Math.floor(Math.random() * 100)}
-				value={newItem}
-				done={false}>
+				deleteTask={deleteTask}
+				todos={todos}>
 				<TodoItem
+					className={'todo-items'}
 					deleteHandler={deleteTask}
 					todoDone={todoDone}
 					id={Math.floor(Math.random() * 100)}
@@ -79,7 +91,3 @@ const App = () => {
 };
 
 export default App;
-
-//components/input.tsx
-
-//TodoList.tsx

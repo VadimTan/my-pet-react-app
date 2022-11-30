@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+@font-face {
+	font-family: 'Caveat', cursive;
+	src: url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+}
+
 .App {
 	text-align: center;
+	border: 3px solid slateblue;
+	background: #283048;
+	background: -webkit-linear-gradient(to right, #859398, #283048);
+	background: linear-gradient(to right, #859398, #283048);
 }
 
 .App-logo {
@@ -39,4 +50,85 @@
 }
 .li-todos {
 	list-style: none;
+}
+
+.h1-todo {
+	text-transform: uppercase;
+	color: midnightblue;
+	font-family: 'Caveat', cursive;
+	font-size: 32px;
+}
+
+.input {
+	background: white;
+	box-sizing: border-box;
+	height: 40px;
+	font-size: 16px;
+	font-weight: 0.5px;
+	padding-left: 10px;
+	border: 3px solid gray;
+	color: gray;
+}
+
+input:focus {
+	background: #edf1f5;
+	border: 3px solid #86a8e7;
+	outline: none;
+	color: #86a8e7;
+}
+
+.todo-list-button {
+	background-color: #86a8e7;
+	border: 2px solid #264a8e;
+	color: white;
+	padding: 8px 20px;
+	margin-left: 5px;
+	text-align: center;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 4px;
+	font-family: 'Times New Roman', Times, serif;
+	cursor: pointer;
+}
+
+.todo-list-button:hover {
+	background-color: rgb(22, 145, 120);
+	color: rgb(39, 42, 75);
+	border: 2px solid #86a8e7;
+}
+
+.button-todo {
+	background-color: #86a8e7;
+	margin-left: 5px;
+	border: 3px solid gray;
+	box-sizing: border-box;
+	color: rgb(84, 243, 41);
+	font-size: 20px;
+	height: 40px;
+	text-align: center;
+	padding-bottom: 4px;
+	cursor: pointer;
+}
+
+.button-todo:hover {
+	background-color: rgb(22, 145, 120);
+	color: rgb(39, 42, 75);
+}
+
+.button-clear-all {
+	background-color: #d60d0d;
+	margin-left: 5px;
+	border: 3px solid gray;
+	box-sizing: border-box;
+	color: rgb(247, 247, 247);
+	font-size: 20px;
+	height: 40px;
+	text-align: center;
+	padding-bottom: 4px;
+	cursor: pointer;
+}
+
+.button-clear-all:hover {
+	background-color: rgb(201, 39, 10);
+	color: rgb(39, 42, 75);
 }
