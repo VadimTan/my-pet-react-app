@@ -17,12 +17,13 @@ export const TodoList: FC<TodoListProps> = ({
 	todos,
 }) => (
 	<ul>
-		{todos.map((rest) => (
+		{todos.map((rest, i) => (
 			<TodoItem
 				{...rest}
+				key={i}
 				className={className}
-				deleteHandler={deleteTask}
-				todoDone={todoDone}
+				deleteHandler={() => deleteTask(rest.id)}
+				todoDone={(rest) => todoDone(!rest)}
 			/>
 		))}
 	</ul>

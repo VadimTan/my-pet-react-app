@@ -45,10 +45,9 @@ const App = () => {
 		setNewItem(e.target.value);
 	};
 
-	const deleteTask = (): void => {
-		setTodos((oldTodos) =>
-			oldTodos.filter((todo: ToDo) => oldTodos.splice(todo.id, 1))
-		);
+	const deleteTask = (val: number): void => {
+		const updatedToDos = todos.filter((todo: ToDo) => val !== todo.id);
+		setTodos([...updatedToDos]);
 	};
 
 	return (
@@ -74,13 +73,13 @@ const App = () => {
 			</>
 			<TodoList
 				className={'todo-list-button'}
-				todoDone={todoDone}
+				todoDone={(done) => todoDone(!done)}
 				deleteTask={deleteTask}
 				todos={todos}>
 				<TodoItem
 					className={'todo-items'}
-					deleteHandler={deleteTask}
-					todoDone={todoDone}
+					deleteHandler={(val) => deleteTask(val)}
+					todoDone={(done) => todoDone(!done)}
 					id={Math.floor(Math.random() * 100)}
 					value={newItem}
 					done={false}

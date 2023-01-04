@@ -16,7 +16,7 @@ export const TodoItem: FC<TodoItemProps> = ({
 }) => {
 	return (
 		<li
-			onClick={() => todoDone(!rest)}
+			onClick={(rest) => todoDone(!rest)}
 			className="li-todos"
 			key={rest.id}>
 			{rest.value}
