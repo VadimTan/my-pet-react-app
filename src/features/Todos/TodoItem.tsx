@@ -3,8 +3,8 @@ import { ToDo } from '../../App';
 import { Button } from '../../components/button';
 
 interface TodoItemProps extends ToDo {
-	deleteHandler: (val: number) => void;
-	todoDone: (val: boolean) => void;
+	deleteHandler: (id: number) => void;
+	todoDone: (id: number) => void;
 	className: string;
 }
 
@@ -16,8 +16,9 @@ export const TodoItem: FC<TodoItemProps> = ({
 }) => {
 	return (
 		<li
-			onClick={(rest) => todoDone(!rest)}
+			onClick={() => todoDone(rest.id)}
 			className="li-todos"
+			style={{ textDecoration: rest.done ? 'line-through' : 'none' }}
 			key={rest.id}>
 			{rest.value}
 			<Button

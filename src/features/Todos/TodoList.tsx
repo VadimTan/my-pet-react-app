@@ -5,7 +5,7 @@ import { ToDo } from '../../App';
 interface TodoListProps {
 	className: string;
 	deleteTask: (id: number) => void;
-	todoDone: (val: boolean) => void;
+	todoDone: (id: number) => void;
 	todos: ToDo[];
 	children: React.ReactNode;
 }
@@ -15,16 +15,18 @@ export const TodoList: FC<TodoListProps> = ({
 	className,
 	deleteTask,
 	todos,
-}) => (
-	<ul>
-		{todos.map((rest, i) => (
-			<TodoItem
-				{...rest}
-				key={i}
-				className={className}
-				deleteHandler={() => deleteTask(rest.id)}
-				todoDone={(rest) => todoDone(!rest)}
-			/>
-		))}
-	</ul>
-);
+}) => {
+	return (
+		<ul>
+			{todos.map((rest, i) => (
+				<TodoItem
+					{...rest}
+					key={i}
+					className={className}
+					deleteHandler={() => deleteTask(rest.id)}
+					todoDone={() => todoDone(rest.id)}
+				/>
+			))}
+		</ul>
+	);
+};

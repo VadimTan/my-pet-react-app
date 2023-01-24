@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Button } from './components/button';
 import { Input } from './components/input';
-import { TodoItem } from './features/Todos/TodoItem';
+// import { TodoItem } from './features/Todos/TodoItem';
 import { TodoList } from './features/Todos/TodoList';
 
 export interface ToDo {
@@ -21,7 +21,7 @@ const App = () => {
 		}
 
 		const todo: ToDo = {
-			id: Math.floor(Math.random() * 100),
+			id: todos.length + 1,
 			value: newItem,
 			done: false,
 		};
@@ -34,10 +34,11 @@ const App = () => {
 		setTodos([]);
 	};
 
-	const todoDone = (done: boolean): void => {
-		const edited = todos.map((cur: ToDo) =>
-			done === cur.done ? { ...cur, done: !cur.done } : cur
-		);
+	const todoDone = (id: number): void => {
+		const edited = todos.map((cur: ToDo) => {
+			if (cur.id === id) return { ...cur, done: !cur.done };
+			return cur;
+		});
 		setTodos(edited);
 	};
 
@@ -45,9 +46,9 @@ const App = () => {
 		setNewItem(e.target.value);
 	};
 
-	const deleteTask = (val: number): void => {
-		const updatedToDos = todos.filter((todo: ToDo) => val !== todo.id);
-		setTodos([...updatedToDos]);
+	const deleteTask = (id: number): void => {
+		const filteredItems = todos.filter((item) => item.id !== id);
+		setTodos(filteredItems);
 	};
 
 	return (
@@ -73,17 +74,10 @@ const App = () => {
 			</>
 			<TodoList
 				className={'todo-list-button'}
-				todoDone={(done) => todoDone(!done)}
+				todoDone={todoDone}
 				deleteTask={deleteTask}
 				todos={todos}>
-				<TodoItem
-					className={'todo-items'}
-					deleteHandler={(val) => deleteTask(val)}
-					todoDone={(done) => todoDone(!done)}
-					id={Math.floor(Math.random() * 100)}
-					value={newItem}
-					done={false}
-				/>
+				{/* ass */}
 			</TodoList>
 		</div>
 	);
