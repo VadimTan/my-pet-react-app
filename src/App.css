@@ -80,7 +80,7 @@
 	cursor: pointer;
 	transition: background-color 0.2s ease-in-out;
 	outline: none;
-	margin-left: 6px;
+	margin: 3px 6px;
 }
 
 .todo-list-button:hover {

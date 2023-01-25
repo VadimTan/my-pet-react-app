@@ -3,13 +3,13 @@ import { ToDo } from '../../App';
 import { Button } from '../../components/button';
 
 interface TodoItemProps extends ToDo {
-	deleteHandler: (id: number) => void;
+	deleteTask: (id: number) => void;
 	todoDone: (id: number) => void;
 	className: string;
 }
 
 export const TodoItem: FC<TodoItemProps> = ({
-	deleteHandler,
+	deleteTask,
 	todoDone,
 	className,
 	...rest
@@ -17,13 +17,13 @@ export const TodoItem: FC<TodoItemProps> = ({
 	return (
 		<li
 			onClick={() => todoDone(rest.id)}
-			className="li-todos"
 			style={{ textDecoration: rest.done ? 'line-through' : 'none' }}
+			className="li-todos"
 			key={rest.id}>
-			{rest.value}
+			{rest.id + '. ' + rest.value}
 			<Button
 				className={className}
-				clickHandler={() => deleteHandler(rest.id)}>
+				clickHandler={() => deleteTask(rest.id)}>
 				Delete
 			</Button>
 		</li>

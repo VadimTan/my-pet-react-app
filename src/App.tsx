@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Button } from './components/button';
 import { Input } from './components/input';
+import { TodoItem } from './features/Todos/TodoItem';
 // import { TodoItem } from './features/Todos/TodoItem';
 import { TodoList } from './features/Todos/TodoList';
 
@@ -75,9 +76,9 @@ const App = () => {
 			<TodoList
 				className={'todo-list-button'}
 				todoDone={todoDone}
-				deleteTask={deleteTask}
+				deleteHandler={deleteTask}
 				todos={todos}>
-				{/* ass */}
+				{/* error */}
 			</TodoList>
 		</div>
 	);
