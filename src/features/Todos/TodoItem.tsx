@@ -15,17 +15,19 @@ export const TodoItem: FC<TodoItemProps> = ({
 	...rest
 }) => {
 	return (
-		<li
-			onClick={() => todoDone(rest.id)}
-			style={{ textDecoration: rest.done ? 'line-through' : 'none' }}
-			className="li-todos"
-			key={rest.id}>
-			{rest.id + '. ' + rest.value}
+		<div className="li-todo-list">
+			<li
+				onClick={() => todoDone(rest.id)}
+				style={{ textDecoration: rest.done ? 'line-through' : 'none' }}
+				className="li-todos"
+				key={rest.id}>
+				{rest.id + '. ' + rest.value}
+			</li>
 			<Button
 				className={className}
 				clickHandler={() => deleteTask(rest.id)}>
 				Delete
 			</Button>
-		</li>
+		</div>
 	);
 };
