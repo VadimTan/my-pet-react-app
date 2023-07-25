@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { ToDo } from '../../App';
 import { Button } from '../../components/button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface TodoItemProps extends ToDo {
 	deleteTask: (id: number) => void;
@@ -21,12 +22,12 @@ export const TodoItem: FC<TodoItemProps> = ({
 				style={{ textDecoration: rest.done ? 'line-through' : 'none' }}
 				className="li-todos"
 				key={rest.id}>
-				{rest.id + '. ' + rest.value}
+				<p>{rest.id + '. ' + rest.value}</p>
 			</li>
 			<Button
 				className={className}
 				clickHandler={() => deleteTask(rest.id)}>
-				Delete
+				<DeleteIcon />
 			</Button>
 		</div>
 	);
