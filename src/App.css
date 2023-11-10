@@ -91,6 +91,12 @@ ul {
 	border-bottom: 2px solid #333;
 }
 
+.text-for-todo {
+	cursor: pointer;
+	user-select: none;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .todo-list-button {
 	display: flex;
 	border: none;

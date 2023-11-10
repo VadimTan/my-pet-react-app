@@ -16,7 +16,7 @@ const App = () => {
 
 	const addItem = () => {
 		if (!newItem) {
-			return;
+			return null;
 		}
 
 		const todo: ToDo = {

@@ -18,11 +18,11 @@ export const TodoItem: FC<TodoItemProps> = ({
 	return (
 		<div className="li-todo-list">
 			<li
-				onClick={() => todoDone(rest.id)}
+				onDoubleClick={() => todoDone(rest.id)}
 				style={{ textDecoration: rest.done ? 'line-through' : 'none' }}
 				className="li-todos"
 				key={rest.id}>
-				<p>{rest.id + '. ' + rest.value}</p>
+				<p className="text-for-todo">{rest.id + '. ' + rest.value}</p>
 			</li>
 			<Button
 				className={className}
